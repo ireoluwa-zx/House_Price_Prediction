@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #eef2f3; padding: 40px; }
+        .container { max_width: 500px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #2c3e50; }
+        label { display: block; margin: 15px 0 5px; font-weight: 600; color: #34495e; }
+        input { width: 100%; padding: 10px; border: 1px solid #bdc3c7; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 20px; font-size: 16px; transition: 0.3s; }
+        button:hover { background-color: #2980b9; }
+        .result { margin-top: 25px; text-align: center; font-size: 1.4em; font-weight: bold; color: #27ae60; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🏠 House Price Estimator</h2>
+        <form action="/predict" method="post">
+            <label>Overall Quality (1-10):</label>
+            <input type="number" name="OverallQual" min="1" max="10" required placeholder="e.g., 7">
+
+            <label>Living Area (sq ft):</label>
+            <input type="number" name="GrLivArea" required placeholder="e.g., 2000">
+
+            <label>Total Basement (sq ft):</label>
+            <input type="number" name="TotalBsmtSF" required placeholder="e.g., 1000">
+
+            <label>Garage Cars (0-4):</label>
+            <input type="number" name="GarageCars" min="0" max="4" required placeholder="e.g., 2">
+
+            <label>Full Bathrooms:</label>
+            <input type="number" name="FullBath" min="0" required placeholder="e.g., 2">
+
+            <label>Year Built:</label>
+            <input type="number" name="YearBuilt" min="1800" max="2026" required placeholder="e.g., 2005">
+
+            <button type="submit">Predict Price</button>
+        </form>
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+</html>
